@@ -1,6 +1,14 @@
 {
   "accounts": [
     {
+      "id": "ryP_XmxlB",
+      "title": "買腳踏車",
+      "time": "2023-09-01",
+      "type": "-1",
+      "account": "500",
+      "remarks": "過生日"
+    },
+    {
       "id": "dLy0XbiCk",
       "title": "asdasd",
       "time": "asdsd",
