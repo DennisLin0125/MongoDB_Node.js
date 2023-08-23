@@ -1,0 +1,68 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f8f9fa; /* 淡灰色背景 */
+}
+
+.container {
+    background-color: #f7f9fc; /* 淺藍色區域背景 */
+    color: #333; /* 深色文字 */
+    width: 90%; /* 較大的寬度 */
+    max-width: 800px; /* 最大寬度限制 */
+    margin: 0 auto; /* 居中對齊 */
+    padding: 20px; /* 加入間距 */
+    border-radius: 8px; /* 圓角邊框 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 輕微陰影效果 */
+}
+
+h1 {
+    font-size: 36px;
+    color: #343a40; /* 深灰色 */
+}
+
+a {
+    color: #007bff; /* 藍色連結 */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #0056b3; /* 較深的藍色當滑鼠移過時 */
+}
+
+.row-cols-5 {
+    border: 1px solid #e1e5ea; /* 淺灰色邊框 */
+    background-color: #ffffff; /* 白色背景 */
+    padding: 10px; /* 加入間距 */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 輕微陰影效果 */
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.checkbox {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: #ffffff;
+    border: 1px solid #e1e5ea;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 24px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.checkbox:checked + label::after {
+    content: "X";
+    color: #dc3545; /* 紅色 */
+    font-weight: bold;
+}
+
+.table-hover .table-striped tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}

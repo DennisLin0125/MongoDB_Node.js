@@ -1,0 +1,41 @@
+ /* 設置字體和背景顏色 */
+ body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f8f9fa; /* 淡灰色背景 */
+}
+
+/* 將容器置中並設置最小高度 */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 定義警示框的外觀 */
+.alert {
+    background-color: #d1e7dd; /* 警示框背景顏色 */
+    border-color: #bee5eb; /* 邊框顏色 */
+    border-radius: 8px; /* 圓角 */
+    padding: 20px; /* 內邊距 */
+    text-align: center; /* 文字置中 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 輕微陰影效果 */
+}
+
+/* 設置標題的樣式 */
+h1 {
+    font-size: 36px; /* 字體大小 */
+    color: #155724; /* 深綠色 */
+    margin-bottom: 10px; /* 底部間距 */
+}
+
+/* 設置超連結的樣式 */
+a {
+    color: #0c5460; /* 深藍色 */
+    text-decoration: none; /* 移除下劃線 */
+}
+
+/* 鼠標懸停時的超連結樣式 */
+a:hover {
+    text-decoration: underline; /* 下劃線效果 */
+}
