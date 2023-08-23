@@ -49,8 +49,19 @@ account
 ├─bin
 │      www
 │
+├─config
+│      config.js
+│
 ├─data
 │      db.json
+│
+├─db
+│      db.js
+│
+├─models
+│      AccountModels.js
+│      bookmodels.js
+│      MovieModels.js
 │
 ├─public
 │  ├─css
