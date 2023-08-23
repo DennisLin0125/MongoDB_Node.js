@@ -30,6 +30,8 @@ router.get('/account', async (req, res) => {
     res.render("list", { accounts: accounts, moment: moment });
   } catch (err) {
     res.status(500).send("讀取失敗~~~");
+    console.error(err);
+    return;
   }
 });
 
@@ -67,13 +69,21 @@ router.post('/account', function(req, res) {
 });
 
 // 刪除紀錄
-router.get("/account/:id", function(req, res){
+router.get("/account/:id", async (req, res) => {
   // 獲取 param 的ID
   let id = req.params.id;
-  // 刪除 
-  db.get('accounts').remove({id:id}).write();
-  // 刪除提醒
-  res.render("success",{msg: "刪除成功喔~~",url:"/account"});
+   
+  try {
+    // 刪除資料庫訊息
+    const accounts = await AccountModel.deleteOne({ _id: id }).exec();
+
+    // 刪除成功提醒
+    res.render("success",{msg: "刪除成功喔~~",url:"/account"});
+  } catch (err) {
+    res.status(500).send("刪除失敗~~~");
+    console.error(err);
+    return;
+  }
 });
 
 module.exports = router;
