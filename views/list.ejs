@@ -29,9 +29,9 @@
                 <tbody>
                     <% accounts.forEach(item => { %>
                         <tr>
-                            <td><%= item.time %></td>
+                            <td><%= moment(item.time).format("YYYY-MM-DD") %></td>
                             <td><%= item.title %></td>
-                            <td><%= item.type==="-1" ? "支出" : "收入" %></td>
+                            <td><%= item.type=== -1 ? "支出" : "收入" %></td>
                             <td><%= item.account %> 元</td>
                             <td>
                                 <a class="btn btn-primary"  href="/account/<%= item.id %>" role="button">刪除</a>

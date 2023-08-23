@@ -17,12 +17,20 @@ const AccountModel = require("../models/AccountModels");
 
 // 測試
 // console.log( moment("2023-09-01").toDate());
+// 格式化時間
+// console.log( moment(new Date()).format("YYYY-MM-DD"));
 
 // 記帳本列表
-router.get('/account', function(req, res) {
-  // 獲取所有帳單訊息
-  let accounts = db.get("accounts").value();
-  res.render("list",{accounts:accounts});
+router.get('/account', async (req, res) => {
+  try {
+    // 獲取資料庫所有帳單訊息,並按照時間做倒序排列
+    const accounts = await AccountModel.find().sort({ time: -1 }).exec();
+
+    // 響應讀取成功的提示 並傳入 moment 函數去渲染 HTML 的時間
+    res.render("list", { accounts: accounts, moment: moment });
+  } catch (err) {
+    res.status(500).send("讀取失敗~~~");
+  }
 });
 
 // 添加紀錄
@@ -36,7 +44,7 @@ router.post('/account', function(req, res) {
   // 查看表單數據  2023-09-01 => new Date()
   // 將 2023-09-01 透過 moment 工具包 轉成 new Date()
   // console.log(req.body);
-  
+
   // 插入數據庫
   // 使用 async/await 處理 create 方法
   async function createBook() {
