@@ -33,11 +33,6 @@ router.get('/account', async (req, res) => {
   }
 });
 
-// 添加紀錄
-router.get('/account/create', function(req, res) {
-  res.render("create");
-});
-
 // 新增紀錄
 router.post('/account', function(req, res) {
   
@@ -55,10 +50,26 @@ router.post('/account', function(req, res) {
           // 修改 time 轉成 new Date()
           time: moment(req.body.time).toDate()
         });
-         // 成功提醒
-        res.render("success",{msg: "添加成功喔~~",url:"/account"});
+
+         // 響應添加成功的json
+        res.json({
+            // 響應編號
+            code: '0000',
+            // 響應的訊息
+            msg: '新增成功',
+            // 響應新增資料
+            data: newBook
+        })
+
     } catch (err) {
-      res.status(500).send("插入失敗");
+      res.json({
+            // 響應編號
+            code: '1002',
+            // 響應的訊息
+            msg: '新增失敗',
+            // 響應新增資料
+            data: null
+        })
       console.error(err);
       return;
     }
