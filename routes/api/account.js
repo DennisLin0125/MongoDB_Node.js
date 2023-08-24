@@ -105,4 +105,33 @@ router.delete("/account/:id", async (req, res) => {
   }
 });
 
+// 獲取單個帳單訊息
+router.get('/account/:id',async (req, res) => {
+  // 獲取 param 的ID
+  let {id} = req.params;
+
+  // 查詢數據庫
+  try {
+    // 獲取資料庫訊息
+    const accounts = await AccountModel.findById(id).exec();
+
+    // 獲取成功json
+    res.json({
+      code: '0000',
+      msg: '獲取成功',
+      data: accounts
+    })
+
+  } catch (err) {
+    // 獲取失敗json
+    res.json({
+      code: '1004',
+      msg: '獲取失敗',
+      data: null
+    })
+    console.error(err);
+    return;
+  }
+});
+
 module.exports = router;
