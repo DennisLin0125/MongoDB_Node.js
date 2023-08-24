@@ -134,4 +134,47 @@ router.get('/account/:id',async (req, res) => {
   }
 });
 
+// 更新單個帳單訊息
+router.patch('/account/:id',async (req, res) => {
+  // 獲取 param 的ID
+  let {id} = req.params;
+  // 更新數據庫
+  try {
+    // 更新資料庫訊息
+    const accounts = await AccountModel.updateOne({_id:id}, req.body).exec();
+
+    // 為了回傳為 json類型 必須在搜尋一次
+    try {
+      const accounts_data = await AccountModel.findById(id).exec();
+
+      // 獲取成功json
+      res.json({
+        code: '0000',
+        msg: '獲取成功',
+        data: accounts_data
+      })
+
+    } catch (err) {
+      // 獲取失敗json
+      res.json({
+        code: '1004',
+        msg: '獲取失敗',
+        data: null
+      })
+      console.error(err);
+      return;
+    }
+
+  } catch (err) {
+    // 獲取失敗json
+    res.json({
+      code: '1005',
+      msg: '更新失敗',
+      data: null
+    })
+    console.error(err);
+    return;
+  }
+});
+
 module.exports = router;
