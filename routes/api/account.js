@@ -11,10 +11,23 @@ router.get('/account', async (req, res) => {
     // 獲取資料庫所有帳單訊息,並按照時間做倒序排列
     const accounts = await AccountModel.find().sort({ time: -1 }).exec();
 
-    // 響應讀取成功的提示 並傳入 moment 函數去渲染 HTML 的時間
-    res.render("list", { accounts: accounts, moment: moment });
+    // 響應讀取成功的json
+    res.json({
+        // 響應編號
+        code: '0000',
+        // 響應的訊息
+        msg: '讀取成功',
+        // 響應資料
+        data: accounts
+    });
+
   } catch (err) {
-    res.status(500).send("讀取失敗~~~");
+    res.json({
+        code: '1001',
+        msg: '讀取失敗',
+        data: null
+    });
+
     console.error(err);
     return;
   }
