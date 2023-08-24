@@ -78,7 +78,7 @@ router.post('/account', function(req, res) {
 });
 
 // 刪除紀錄
-router.get("/account/:id", async (req, res) => {
+router.delete("/account/:id", async (req, res) => {
   // 獲取 param 的ID
   let id = req.params.id;
    
@@ -86,10 +86,20 @@ router.get("/account/:id", async (req, res) => {
     // 刪除資料庫訊息
     const accounts = await AccountModel.deleteOne({ _id: id }).exec();
 
-    // 刪除成功提醒
-    res.render("success",{msg: "刪除成功喔~~",url:"/account"});
+    // 刪除成功json
+    res.json({
+      code: '0000',
+      msg: '刪除成功',
+      data: {}
+    })
+
   } catch (err) {
-    res.status(500).send("刪除失敗~~~");
+    // 刪除失敗json
+    res.json({
+      code: '1003',
+      msg: '刪除失敗',
+      data: null
+    })
     console.error(err);
     return;
   }
