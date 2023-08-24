@@ -1,19 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-// 導入lowdb
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
- 
-const adapter = new FileSync(__dirname + '/../data/db.json');
-const db = low(adapter);
-
-// 導入 shortid
-const shortid = require('shortid');
-
 // 導入 moment
 const moment = require("moment");
-const AccountModel = require("../models/AccountModels");
+const AccountModel = require("../../models/AccountModels");
 
 // 測試
 // console.log( moment("2023-09-01").toDate());
