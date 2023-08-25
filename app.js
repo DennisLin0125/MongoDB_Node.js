@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/web/index');
+const authRouter = require('./routes/web/auth');
 
 // 導入 account api 的路由文件
 const accountRoutes  = require('./routes/api/account');
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/', authRouter);
 
 // http://127.0.0.1:3000/api/account 即可訪問
 app.use('/api',accountRoutes);
