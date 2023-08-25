@@ -19,7 +19,7 @@ router.post('/reg', (req,res) => {
     async function createUser() {
         try {
             // 將帳號密碼存入DB
-            const newBook = await UserModel.create({
+            const reg_userData = await UserModel.create({
                 ...req.body,
                 // 將密碼進行加密
                 password: md5(req.body.password)
@@ -35,5 +35,39 @@ router.post('/reg', (req,res) => {
     createUser(); // 呼叫創建書籍的函數
 });
 
+// 登入頁面
+router.get('/login', (req,res) => {
+    // 響應HTML
+    res.render('auth/login');
+});
+
+// 登入操作
+router.post('/login', (req,res) => {
+    // 獲取用戶名和密碼
+    let {username ,password} = req.body;
+
+    // 查詢數據庫
+    async function findUser() {
+        try {
+            
+            const userData = await UserModel.findOne({
+                username: username,
+                password: md5(password)
+            });
+
+            if (!userData) {
+                return res.send('帳號或密碼錯誤');
+            }
+            // 登入成功
+            res.render("success",{msg: "登入成功喔~~",url:"/account"});
+
+        } catch (err) {
+            res.status(500).send("登入失敗");
+            console.error(err);
+            return;
+        }
+    }
+    findUser(); // 呼叫創建書籍的函數
+});
 
 module.exports = router;
