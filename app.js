@@ -1,10 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/web/index');
+const indexRouter = require('./routes/web/index');
 const authRouter = require('./routes/web/auth');
 
 // 導入 account api 的路由文件
@@ -17,7 +17,7 @@ const MongoStore = require('connect-mongo');
 // 導入 配置項
 const {DB_HOST, DB_PORT, DB_NAME} = require('./config/config');
 
-var app = express();
+const app = express();
 
 // 設置session中間件
 app.use(session({
@@ -52,7 +52,8 @@ app.use('/api',accountRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  // 響應 404
+  res.render('404');
 });
 
 // error handler

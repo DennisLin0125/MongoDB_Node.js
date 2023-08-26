@@ -1,12 +1,19 @@
-var express = require('express');
-var router = express.Router();
-
+// 導入 express
+const express = require('express');
 // 導入 moment
 const moment = require("moment");
 const AccountModel = require("../../models/AccountModels");
-
 // 導入 檢測中間件登入 
-let checkLoginMiddleware = require('../../middlewares/checkLoginMiddleware');
+const checkLoginMiddleware = require('../../middlewares/checkLoginMiddleware');
+
+// 創建路由對象
+const router = express.Router();
+
+// 添加首頁路由
+router.get('/', (req,res) => {
+  //重定向 /account
+  res.redirect('/account');
+});
 
 // 記帳本列表
 router.get('/account',checkLoginMiddleware,async (req, res) => {
