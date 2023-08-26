@@ -1,6 +1,9 @@
 // 導入 jwt
 const jwt = require('jsonwebtoken');
 
+// 導入配置項
+const {SECRET} = require('../config/config');
+
 // 宣告中間件
 module.exports = (req,res,next) => {
     // 獲取 token
@@ -14,7 +17,7 @@ module.exports = (req,res,next) => {
     }
   
     // 校驗 token
-    jwt.verify(token,'dennislin',(err,data) => {
+    jwt.verify(token,SECRET,(err,data) => {
       if (err) {
         return res.json({
           code: "2004",
