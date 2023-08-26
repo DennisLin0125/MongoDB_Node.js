@@ -75,4 +75,14 @@ router.post('/login', (req,res) => {
     findUser(); // 呼叫創建書籍的函數
 });
 
+
+// 退出登入
+router.get('/logout', (req,res) => {
+    // 銷毀 session
+    req.session.destroy(() => {
+        // 退出成功響應
+        res.render("success",{msg: "退出成功喔~~",url:"/login"});
+    });
+});
+
 module.exports = router;

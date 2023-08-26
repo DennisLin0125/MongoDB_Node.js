@@ -18,6 +18,7 @@
                 <h1><i class="fas fa-piggy-bank"></i> 記帳本</h1>
             </div>
             <div class="col-md-6 text-end">
+                <a id="logout" class="btn btn-danger" href="/logout" role="button">退出</a>
                 <a class="btn btn-primary" href="/account/create" role="button">添加帳單</a>
             </div>
         </div>
@@ -56,15 +57,23 @@
 
         // 綁定事件
         delbtn.forEach(item => {
-            item.addEventListener('click',function(e){
-                if (confirm('你確定要刪除嗎??')) {
-                    return true;
-                }else{
-                    // 阻止默認行為
+            item.addEventListener('click', function(e) {
+                if (!confirm('你確定要刪除嗎?')) {
                     e.preventDefault();
                 }
             });
         })
+
+        // 獲取退出按鈕元素
+        let logoutButton = document.getElementById('logout');
+
+        // 綁定事件
+        logoutButton.addEventListener('click', function(e) {
+            if (!confirm('你確定要退出嗎?')) {
+                e.preventDefault();
+            }
+        });
+
     </script>
 </body>
 </html>
