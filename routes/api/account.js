@@ -1,12 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // 導入 moment
 const moment = require("moment");
 const AccountModel = require("../../models/AccountModels");
 
+// 導入 中間件
+const checkTokenMiddleware = require('../../middlewares/checkTokenMiddleware');
+
 // 記帳本列表
-router.get('/account', async (req, res) => {
+router.get('/account',checkTokenMiddleware, async (req, res) => {
+
   try {
     // 獲取資料庫所有帳單訊息,並按照時間做倒序排列
     const accounts = await AccountModel.find().sort({ time: -1 }).exec();
@@ -34,7 +38,7 @@ router.get('/account', async (req, res) => {
 });
 
 // 新增紀錄
-router.post('/account', function(req, res) {
+router.post('/account',checkTokenMiddleware, function(req, res) {
   
   // 查看表單數據  2023-09-01 => new Date()
   // 將 2023-09-01 透過 moment 工具包 轉成 new Date()
@@ -78,7 +82,7 @@ router.post('/account', function(req, res) {
 });
 
 // 刪除紀錄
-router.delete("/account/:id", async (req, res) => {
+router.delete("/account/:id",checkTokenMiddleware, async (req, res) => {
   // 獲取 param 的ID
   let id = req.params.id;
    
@@ -106,7 +110,7 @@ router.delete("/account/:id", async (req, res) => {
 });
 
 // 獲取單個帳單訊息
-router.get('/account/:id',async (req, res) => {
+router.get('/account/:id',checkTokenMiddleware,async (req, res) => {
   // 獲取 param 的ID
   let {id} = req.params;
 
@@ -135,7 +139,7 @@ router.get('/account/:id',async (req, res) => {
 });
 
 // 更新單個帳單訊息
-router.patch('/account/:id',async (req, res) => {
+router.patch('/account/:id',checkTokenMiddleware,async (req, res) => {
   // 獲取 param 的ID
   let {id} = req.params;
   // 更新數據庫

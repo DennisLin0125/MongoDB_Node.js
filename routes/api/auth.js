@@ -25,7 +25,7 @@ router.post('/login', (req,res) => {
             });
 
             if (!userData) {
-                res.json({
+                return res.json({
                     code: "2002",
                     msg: "帳號或密碼錯誤",
                     data: null
