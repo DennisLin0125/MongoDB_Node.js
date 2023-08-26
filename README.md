@@ -30,7 +30,7 @@ npm start
 
 ### 網站效果
 
-* 打開瀏覽器 <http://localhost:3000/account>
+* 打開瀏覽器 <http://localhost:3000>
 
 ## Folder tree
 
