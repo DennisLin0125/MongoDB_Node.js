@@ -58,6 +58,11 @@ router.post('/login', (req,res) => {
             if (!userData) {
                 return res.send('帳號或密碼錯誤');
             }
+            
+            // 寫入 session
+            req.session.username = userData.username;
+            req.session._id = userData._id;
+
             // 登入成功
             res.render("success",{msg: "登入成功喔~~",url:"/account"});
 
