@@ -18,7 +18,10 @@
                 <h1><i class="fas fa-piggy-bank"></i> 記帳本</h1>
             </div>
             <div class="col-md-6 text-end">
-                <a id="logout" class="btn btn-danger" href="/logout" role="button">退出</a>
+                <form action="/logout" method="post">
+                    <button id="logout" class="btn btn-danger">退出</button>
+                </form>
+                <br>
                 <a class="btn btn-primary" href="/account/create" role="button">添加帳單</a>
             </div>
         </div>

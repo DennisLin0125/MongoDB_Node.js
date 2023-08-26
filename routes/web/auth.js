@@ -77,7 +77,7 @@ router.post('/login', (req,res) => {
 
 
 // 退出登入
-router.get('/logout', (req,res) => {
+router.post('/logout', (req,res) => {
     // 銷毀 session
     req.session.destroy(() => {
         // 退出成功響應
