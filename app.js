@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/web/index');
 const authRouter = require('./routes/web/auth');
+const authAPIRouter = require('./routes/api/auth');
 
 // 導入 account api 的路由文件
 const accountRoutes  = require('./routes/api/account');
@@ -49,6 +50,7 @@ app.use('/', authRouter);
 
 // http://127.0.0.1:3000/api/account 即可訪問
 app.use('/api',accountRoutes);
+app.use('/api',authAPIRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
