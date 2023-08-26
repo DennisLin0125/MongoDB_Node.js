@@ -58,10 +58,15 @@ account
 ├─db
 │      db.js
 │
+├─middlewares
+│      checkLoginMiddleware.js
+│      checkTokenMiddleware.js
+│      
 ├─models
 │      AccountModels.js
 │      bookmodels.js
 │      MovieModels.js
+│      UserModel.js
 │
 ├─public
 │  ├─css
@@ -73,8 +78,13 @@ account
 │          style.css
 │
 ├─routes
-│      index.js
-│      users.js
+│  ├─api
+│  │      account.js
+│  │      auth.js
+│  │
+│  └─web
+│          auth.js
+│          index.js
 │
 ├─test
 │      db.json
@@ -82,10 +92,15 @@ account
 │      test.js
 │
 └─views
-        create.ejs
-        error.ejs
-        index.ejs
-        list.ejs
-        success.ejs
+    │  404.ejs
+    │  create.ejs
+    │  error.ejs
+    │  index.ejs
+    │  list.ejs
+    │  success.ejs
+    │
+    └─auth
+            login.ejs
+            reg.ejs
 
 ```
