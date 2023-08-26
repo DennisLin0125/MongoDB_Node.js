@@ -5,13 +5,12 @@ var router = express.Router();
 const moment = require("moment");
 const AccountModel = require("../../models/AccountModels");
 
-// 測試
-// console.log( moment("2023-09-01").toDate());
-// 格式化時間
-// console.log( moment(new Date()).format("YYYY-MM-DD"));
+// 導入 檢測中間件登入 
+let checkLoginMiddleware = require('../../middlewares/checkLoginMiddleware');
 
 // 記帳本列表
-router.get('/account', async (req, res) => {
+router.get('/account',checkLoginMiddleware,async (req, res) => {
+
   try {
     // 獲取資料庫所有帳單訊息,並按照時間做倒序排列
     const accounts = await AccountModel.find().sort({ time: -1 }).exec();
@@ -26,12 +25,12 @@ router.get('/account', async (req, res) => {
 });
 
 // 添加紀錄
-router.get('/account/create', function(req, res) {
+router.get('/account/create',checkLoginMiddleware, function(req, res) {
   res.render("create");
 });
 
 // 新增紀錄
-router.post('/account', function(req, res) {
+router.post('/account',checkLoginMiddleware, function(req, res) {
   
   // 查看表單數據  2023-09-01 => new Date()
   // 將 2023-09-01 透過 moment 工具包 轉成 new Date()
@@ -59,7 +58,7 @@ router.post('/account', function(req, res) {
 });
 
 // 刪除紀錄
-router.get("/account/:id", async (req, res) => {
+router.get("/account/:id",checkLoginMiddleware, async (req, res) => {
   // 獲取 param 的ID
   let id = req.params.id;
    
